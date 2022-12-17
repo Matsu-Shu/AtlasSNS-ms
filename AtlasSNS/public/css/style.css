@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+html {}
+
+body {}
+
+/* common */
+p {
+    padding: 5px;
+    font-size: 15px;
+}
+
+img {
+    height: 30PX;
+    width: auto;
+}
+
+/* header */
+header {
+    height: 60PX;
+    width: 100%;
+    background: #186AC9;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_logo {
+    /* background: #ff69b4; */
+}
+
+.header_logo a {
+    margin: auto;
+}
+
+.header_user {
+    /* background: #3cb371; */
+    width: 25%;
+}
+
+/* main content */
+#row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#container {
+    flex: 0 0 80%;
+}
+
+#side-bar {
+    flex: 0 0 19%;
+    border-left: 1px solid #727272;
+}
+
+/* menu_ac */
+.nav {
+    display: none;
+}
+
+.nav li {
+    width: 100%;
+    text-align: center;
+    color: #808080;
+    background-color: #ffffff;
+}
+
+.nav li:hover {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #000080;
+}
+
+.nav li a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu_ac {
+    padding: 10px;
+    color: #fff;
+    /* position: relative; */
+    margin: auto;
+}
+
+.menu_ac::before {
+    content: "∨";
+    position: relative;
+    left: 80px;
+}
+
+.menu_ac.active::before {
+    content: "∧";
+}
+
+/* .menu_ac img {
+    display: block;
+    margin-left: 40px;
+} */
+
+/* btn */
+.btn {
+    padding: 0.5px 10px;
+}
+
+.btn_hover {
+    color: #fff;
+    background-color: #186AC9;
+}
+
+.btn_hover:hover {
+    color: #fff;
+    background: #4b93e7;
+}
