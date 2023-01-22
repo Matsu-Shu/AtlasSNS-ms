@@ -29,18 +29,29 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
+
 //ログイン中のページ
 Route::get('/top','PostsController@index');
-
-Route::get('/profile','UsersController@profile');
-
-Route::get('/search','UsersController@index');
-
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
-
 // new Post
 // ①つぶやきの登録処理
 Route::post('post/create','PostsController@create');
-//
-Route::post('post/create','PostsController@create');
+// ②投稿を表示する
+Route::post('post/index','PostsController@index');
+
+// update
+Route::post('post/update', 'PostsController@update');
+
+// delete
+Route::get('post/{id}/delete', 'PostsController@delete');
+
+//profile
+Route::get('/profile','UsersController@profile');
+
+//search
+Route::get('/search','UsersController@search');
+
+//follow
+Route::get('/follow-list','PostsController@index');
+Route::get('/follower-list','PostsController@index');
+
+//logout

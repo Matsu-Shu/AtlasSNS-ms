@@ -22,6 +22,9 @@
     <script src="js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
+    <!-- jQuery file-->
+    <script src="js/script.js"></script>
+    <!-- content -->
     <header>
         <!-- <div id = "header_block"> -->
             <div class="header_logo">
@@ -30,21 +33,12 @@
                 <!-- </h1> -->
             </div>
             <div class="header_user">
-              <p class="menu_ac">〇〇さん<img src="images/icon1.png"></p>
+              <p class="menu_ac">{{ Auth::user()->username }}さん<img src="images/icon1.png"></p>
               <ul class="nav nav_hover">
                    <li><a href="/top">HOME</a></li>
                    <li><a href="/profile">プロフィール編集</a></li>
-                   <li><a href="/login">ログアウト</a></li>
+                   <li><a href="/logout">ログアウト</a></li>
               </ul>
-              <!-- Menu Jq -->
-              <script>
-                  $(function(){
-                        $('.menu_ac').click(function(){
-                            $(this).toggleClass('active');
-                            $(this).next('ul').slideToggle();
-		                });
-	                });
-              </script>
             </div>
         <!-- </div> -->
     </header>
@@ -54,7 +48,7 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>〇〇名</p>
@@ -66,7 +60,7 @@
                 </div>
                 <p><a href="/followerList" class="btn btn_hover ">フォロワーリスト</a></p>
             </div>
-            <p ><a href="" class="btn btn_hover ">ユーザー検索</a></p>
+            <p ><a href="/search" class="btn btn_hover ">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

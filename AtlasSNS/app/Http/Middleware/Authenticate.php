@@ -18,4 +18,13 @@ class Authenticate extends Middleware
             return route('login');
         }
     }
+
+    //middle ware
+    // public function handle($request, Closure $next)
+    // {
+    //     if (!Auth::check()) { // 非ログインはログインページに飛ばす(もし未ログインならリダイレクトという処理)
+    //         return redirect('/login');
+    //     }
+    //     return $next($request);
+    // }
 }
