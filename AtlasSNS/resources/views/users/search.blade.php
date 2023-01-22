@@ -12,15 +12,12 @@
 <!-- search word -->
 
 
-<!-- search user result -->
-
-
-
-<!-- user list・・・userテーブルから名前とアイコンを取得し、表示する-->
+<!-- user list -->
+<!-- キーワードに値がない場合は、userテーブルから名前とアイコンを取得し表示する、ある場合は、キーワードの結果の表示する、 -->
 <table>
    @foreach ($users as $users)
    <tr>
-      <td>{{ $users->image }}</td>
+      <td>{{ $users->images }}</td>
       <td>{{ $users->username }}</td>
    </tr>
    @endforeach
