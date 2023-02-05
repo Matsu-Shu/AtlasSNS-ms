@@ -28,7 +28,7 @@ class UsersController extends Controller
 
         // 画像のアップロード
         $user->images = $request->file('images')->getClientOriginalName(); //getClientOriginalName()メソッドでファイル名を取得する
-        $icon = $request->file('images')->store('public/images'); //store(ファイルの保存先)メソッドで取得した画像を保存する
+        $icon = $request->file('images')->storeAs('images/', $user->images); //store(ファイルの保存先)メソッドで取得した画像を保存する
 
         \DB::table('users')
             ->where('id', $id)
@@ -37,7 +37,7 @@ class UsersController extends Controller
                 'mail' => $user->mail,
                 'password' => bcrypt($user->password),
                 'bio' => $user->bio,
-                'images' => $icon,
+                'images' => $user->images,
             ]);
 
         return redirect('top');
