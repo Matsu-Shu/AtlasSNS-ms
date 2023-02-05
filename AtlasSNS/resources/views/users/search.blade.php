@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- search form -->
-<form action="/search" method="get">
+<form action="/search" method="post">
    <!-- 任意の<input>要素＝入力欄などを用意する -->
    <input type="text" name="keyword" placeholder="ユーザー名">
    <!-- 送信ボタンを用意する -->
@@ -10,7 +10,7 @@
 </form>
 
 <!-- search word -->
-
+<P>{{( $keyword )}}
 
 <!-- user list -->
 <!-- キーワードに値がない場合は、userテーブルから名前とアイコンを取得し表示する、ある場合は、キーワードの結果の表示する、 -->

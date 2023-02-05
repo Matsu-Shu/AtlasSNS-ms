@@ -33,10 +33,10 @@
                 <!-- </h1> -->
             </div>
             <div class="header_user">
-              <p class="menu_ac">{{ Auth::user()->username }}さん<img src="images/icon1.png"></p>
+              <p class="menu_ac">{{ Auth::user()->username }}さん<img src="{{ Auth::user()->images }}"></p>
               <ul class="nav nav_hover">
-                   <li><a href="/top">HOME</a></li>
                    <li><a href="/profile">プロフィール編集</a></li>
+                   <li><a href="/top">HOME</a></li>
                    <li><a href="/logout">ログアウト</a></li>
               </ul>
             </div>

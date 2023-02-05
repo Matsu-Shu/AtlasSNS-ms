@@ -143,3 +143,11 @@ header {
     transform: translate(-50%, -50%);
     width: 60%;
 }
+
+/* new post */
+
+
+/* profile */
+.profile {
+    display: flex;
+}

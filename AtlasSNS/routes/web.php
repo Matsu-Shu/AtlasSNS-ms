@@ -46,9 +46,10 @@ Route::get('post/{id}/delete', 'PostsController@delete');
 
 //profile
 Route::get('/profile','UsersController@profile');
+Route::post('profile/update','UsersController@profileUpdate');
 
 //search
-Route::get('/search','UsersController@search');
+Route::post('/search','UsersController@search');
 
 //follow
 Route::get('/follow-list','PostsController@index');

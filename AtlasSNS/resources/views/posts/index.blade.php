@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- new_Post -->
-<img src="images/icon1.png">
+<img src="{{ Auth::user()->images }}">
 <!-- urlが 'user/profile' となっているところにフォームの値を送る -->
  {!! Form::open(['url' => 'post/create']) !!}
         <div class="form-post">

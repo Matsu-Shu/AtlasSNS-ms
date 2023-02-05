@@ -3,12 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// AtlasSNSフォルダ内にあるAuth処理のphpを使う
+use Auth;
 
 class UsersController extends Controller
 {
-    //
-    public function profile(){
-        return view('users.profile');
+    //ログインユーザー情報の表示
+    public function profile()
+    {
+        $user = Auth::user(); // ログインしているユーザー情報のすべてを取得し、$userとする
+        return view('users.profile',['user'=>$user]);
+    }
+
+    public function profileUpdate(Request $request){
+        $user = Auth::user(); // ログインしているユーザー情報のすべてを取得し、$userとする
+        $id = Auth::id(); // ログインしているユーザーのidを取得し、$idとする
+
+        // ユーザー情報の更新
+        $user->username = $request->input('username');
+        $user->mail = $request->input('mail');
+        $user->password = $request->input('password');
+        // $user->password = $request->input('password_conf');
+        $user->bio = $request->input('bio');
+
+        // 画像のアップロード
+        $user->images = $request->file('images')->getClientOriginalName(); //getClientOriginalName()メソッドでファイル名を取得する
+        $icon = $request->file('images')->store('public/images'); //store(ファイルの保存先)メソッドで取得した画像を保存する
+
+        \DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'username' => $user->username,
+                'mail' => $user->mail,
+                'password' => bcrypt($user->password),
+                'bio' => $user->bio,
+                'images' => $icon,
+            ]);
+
+        return redirect('top');
     }
 
     //search
@@ -24,5 +56,6 @@ class UsersController extends Controller
         }
 
         return view('users.search',['users'=>$users],compact('users', 'keyword'));
+        //compact関数でusersとkeywordの配列化
     }
 }
