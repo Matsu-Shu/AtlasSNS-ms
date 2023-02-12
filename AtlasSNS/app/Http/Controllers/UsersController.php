@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// バリデーション設定
+use App\Http\Requests\UserUpdate;
 // AtlasSNSフォルダ内にあるAuth処理のphpを使う
 use Auth;
 
@@ -15,7 +17,7 @@ class UsersController extends Controller
         return view('users.profile',['user'=>$user]);
     }
 
-    public function profileUpdate(Request $request){
+    public function profileUpdate(UserUpdate $request){
         $user = Auth::user(); // ログインしているユーザー情報のすべてを取得し、$userとする
         $id = Auth::id(); // ログインしているユーザーのidを取得し、$idとする
 
@@ -25,12 +27,17 @@ class UsersController extends Controller
         $user->password = $request->input('password');
         // $user->password = $request->input('password_conf');
         $user->bio = $request->input('bio');
-
         // 画像のアップロード
-        $user->images = $request->file('images')->getClientOriginalName(); //getClientOriginalName()メソッドでファイル名を取得する
-        $icon = $request->file('images')->storeAs('images/', $user->images); //store(ファイルの保存先)メソッドで取得した画像を保存する
+        $user->images = $request->file('images');
 
-        \DB::table('users')
+        //$user->imagesの値が　!Null；画像含む情報を保存する　Null：画像以外の情報を保存する
+        if(!empty($user->images)){
+            //getClientOriginalName()メソッドでファイル名を取得する
+            $user->images->getClientOriginalName();
+            //storeAs(storage/の中に作るファイル名, 保存するときのファイル名)
+            $icon = $request->file('images')->storeAs('public/images/', $user->images);
+
+             \DB::table('users')
             ->where('id', $id)
             ->update([
                 'username' => $user->username,
@@ -40,7 +47,21 @@ class UsersController extends Controller
                 'images' => $user->images,
             ]);
 
-        return redirect('top');
+             return redirect('top');
+        }else{
+            \DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'username' => $user->username,
+                    'mail' => $user->mail,
+                    'password' => bcrypt($user->password),
+                    'bio' => $user->bio,
+                    // 'images' => $user->images,
+                ]);
+
+            return redirect('top');
+
+        }
     }
 
     //search

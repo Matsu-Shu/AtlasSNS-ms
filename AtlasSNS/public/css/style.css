@@ -53,7 +53,7 @@ header {
 }
 
 /* menu_ac */
-.nav {
+/* .nav {
     display: none;
 }
 
@@ -74,7 +74,7 @@ header {
 .nav li a {
     text-decoration: none;
     font-weight: bold;
-}
+} */
 
 .menu_ac {
     padding: 10px;
@@ -93,10 +93,9 @@ header {
     content: "∧";
 }
 
-/* .menu_ac img {
-    display: block;
-    margin-left: 40px;
-} */
+/* ex */
+
+
 
 /* btn */
 .btn {

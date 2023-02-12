@@ -33,13 +33,17 @@
                 <!-- </h1> -->
             </div>
             <div class="header_user">
-              <p class="menu_ac">{{ Auth::user()->username }}さん<img src="{{ Auth::user()->images }}"></p>
-              <ul class="nav nav_hover">
-                   <li><a href="/profile">プロフィール編集</a></li>
-                   <li><a href="/top">HOME</a></li>
-                   <li><a href="/logout">ログアウト</a></li>
-              </ul>
+            <!-- ac menu -->
+              <p class="menu_ac">{{ Auth::user()->username }}さん<img src="{{ asset('storage/images/'. Auth::user()->images) }}"></p>
+              <nav>
+                <ul class="nav nav_hover">
+                    <li><a href="/profile">プロフィール編集</a></li>
+                    <li><a href="/top">HOME</a></li>
+                    <li><a href="/logout">ログアウト</a></li>
+                </ul>
+              </nav>
             </div>
+
         <!-- </div> -->
     </header>
     <div id="row">

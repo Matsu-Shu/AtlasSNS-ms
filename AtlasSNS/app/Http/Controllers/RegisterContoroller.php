@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+// バリデーション設定
+use App\Http\Requests\UserLogin;
 
 class RegisterContoroller extends Controller{
     // public function test(Request $request){
@@ -14,4 +15,5 @@ class RegisterContoroller extends Controller{
     //     // バリデーションに引っかかった場合の処理
     //     }
     // }
+    public function register(SignUp $request){}
 }

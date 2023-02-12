@@ -15,7 +15,7 @@
 {{ Form::text('password',null,['class' => 'input']) }}
 
 {{ Form::label('パスワード確認') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+{{ Form::text('password_conf',null,['class' => 'input']) }}
 
 {{ Form::submit('登録') }}
 
