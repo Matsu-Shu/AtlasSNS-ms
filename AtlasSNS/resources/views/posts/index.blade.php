@@ -5,8 +5,18 @@
 <img src="{{ asset('storage/images/'. Auth::user()->images) }}">
 <!-- urlが 'user/profile' となっているところにフォームの値を送る -->
  {!! Form::open(['url' => 'post/create']) !!}
+        <!-- error message -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="form-post">
-            {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容入力してください']) !!}
+            {!! Form::input('text', 'newPost', null, ['class' => 'form-control', 'placeholder' => '投稿内容入力してください']) !!}
         </div>
         <input type="image" class="send_img" src="images/post.png">
  {!! Form::close() !!}

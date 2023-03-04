@@ -53,49 +53,33 @@ header {
 }
 
 /* menu_ac */
-/* .nav {
+.nav {
     display: none;
 }
 
-.nav li {
-    width: 100%;
-    text-align: center;
-    color: #808080;
-    background-color: #ffffff;
-}
-
-.nav li:hover {
-    width: 100%;
-    text-align: center;
+.nav-open {
+    padding: 15px;
     color: #fff;
-    background: #000080;
-}
-
-.nav li a {
-    text-decoration: none;
-    font-weight: bold;
-} */
-
-.menu_ac {
-    padding: 10px;
-    color: #fff;
-    /* position: relative; */
-    margin: auto;
-}
-
-.menu_ac::before {
-    content: "∨";
+    font-size: 20px;
+    background: #2073c8;
     position: relative;
-    left: 80px;
 }
 
-.menu_ac.active::before {
+.nav-open::before {
+    /* 閉じている時 */
     content: "∧";
+    position: absolute;
+    right: 20px;
 }
 
-/* ex */
+.nav-open.active::before {
+    /* 開いている時 */
+    content: "∨";
+}
 
-
+li {
+    font-size: 10px;
+}
 
 /* btn */
 .btn {

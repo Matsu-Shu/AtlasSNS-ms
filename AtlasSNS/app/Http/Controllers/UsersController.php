@@ -10,6 +10,7 @@ use Auth;
 
 class UsersController extends Controller
 {
+    //profile
     //ログインユーザー情報の表示
     public function profile()
     {
@@ -33,9 +34,9 @@ class UsersController extends Controller
         //$user->imagesの値が　!Null；画像含む情報を保存する　Null：画像以外の情報を保存する
         if(!empty($user->images)){
             //getClientOriginalName()メソッドでファイル名を取得する
-            $user->images->getClientOriginalName();
-            //storeAs(storage/の中に作るファイル名, 保存するときのファイル名)
-            $icon = $request->file('images')->storeAs('public/images/', $user->images);
+            $icon=$user->images->getClientOriginalName();
+            //storeAs(storage/の中に作るファイル名, 保存するときのファイル名):参照ファイル（public/storage/images）に選択したファイルを保存する処理
+            $request->file('images')->storeAs('public/images', $icon);
 
              \DB::table('users')
             ->where('id', $id)
@@ -44,7 +45,7 @@ class UsersController extends Controller
                 'mail' => $user->mail,
                 'password' => bcrypt($user->password),
                 'bio' => $user->bio,
-                'images' => $user->images,
+                'images' => $icon, //getClientOriginalName()メソッドで取得したファイル名を保存
             ]);
 
              return redirect('top');
@@ -60,7 +61,6 @@ class UsersController extends Controller
                 ]);
 
             return redirect('top');
-
         }
     }
 
@@ -79,4 +79,23 @@ class UsersController extends Controller
         return view('users.search',['users'=>$users],compact('users', 'keyword'));
         //compact関数でusersとkeywordの配列化
     }
+
+    //follow
+    public function follow(User $user) {
+        $follow = FollowUser::create([
+            'following_user_id' => \Auth::user()->id,
+            'followed_user_id' => $user->id,
+        ]);
+        $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
+        return response()->json(['followCount' => $followCount]);
+    }
+
+    public function unfollow(User $user) {
+        $follow = FollowUser::where('following_user_id', \Auth::user()->id)->where('followed_user_id', $user->id)->first();
+        $follow->delete();
+        $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
+
+        return response()->json(['followCount' => $followCount]);
+    }
+
 }

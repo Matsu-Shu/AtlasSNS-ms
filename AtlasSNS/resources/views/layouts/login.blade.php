@@ -27,22 +27,27 @@
     <!-- content -->
     <header>
         <!-- <div id = "header_block"> -->
+            <!-- 1:ヘッダーロゴ -->
             <div class="header_logo">
                 <!-- <h1> -->
                     <a href="/top"><img src="images/atlas.png"></a>
                 <!-- </h1> -->
             </div>
-            <div class="header_user">
-            <!-- ac menu -->
-              <p class="menu_ac">{{ Auth::user()->username }}さん<img src="{{ asset('storage/images/'. Auth::user()->images) }}"></p>
-              <nav>
-                <ul class="nav nav_hover">
-                    <li><a href="/profile">プロフィール編集</a></li>
+            <!-- 2:ヘッダーユーザーネーム -->
+            <div class="header_user"><p>{{ Auth::user()->username }}さん</p></div>
+            <!-- 3:アコーディオンメニュー -->
+            <div class="ac_menu">
+            <p class="nav-open"></p>
+            <nav>
+                <ul>
                     <li><a href="/top">HOME</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
+                    <li><a href="/profile">プロフィール編集</a></li>
+                    <li><a href="/logout" method="get">ログアウト</a></li>
                 </ul>
-              </nav>
+            </nav>
             </div>
+            <!-- 4:ヘッダーアイコン -->
+            <div class=""><img src="{{ asset('storage/images/'. Auth::user()->images) }}"></div>
 
         <!-- </div> -->
     </header>

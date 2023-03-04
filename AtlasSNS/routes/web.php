@@ -18,41 +18,49 @@
 
 //Auth::routes();
 
+//ログアウト中のミドルウェア
+// Route::middleware(['guest'])->group(function () {
+   //ログアウト中のページ
+  Route::get('/login', 'Auth\LoginController@login');
+  Route::post('/login', 'Auth\LoginController@login');
 
-//ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
-Route::post('/login', 'Auth\LoginController@login');
+  Route::get('/register', 'Auth\RegisterController@register');
+  Route::post('/register', 'Auth\RegisterController@register');
 
-Route::get('/register', 'Auth\RegisterController@register');
-Route::post('/register', 'Auth\RegisterController@register');
+  Route::get('/added', 'Auth\RegisterController@added');
+  Route::post('/added', 'Auth\RegisterController@added');
 
-Route::get('/added', 'Auth\RegisterController@added');
-Route::post('/added', 'Auth\RegisterController@added');
+// });
 
 
-//ログイン中のページ
-Route::get('/top','PostsController@index');
-// new Post
-// ①つぶやきの登録処理
-Route::post('post/create','PostsController@create');
-// ②投稿を表示する
-Route::post('post/index','PostsController@index');
 
-// update
-Route::post('post/update', 'PostsController@update');
+//ログイン中のミドルウェア
+Route::group(['middleware' => ['auth']],function (){
+    //ログイン中のページ
+    Route::get('/top','PostsController@index');
+    // new Post
+    Route::post('post/create','PostsController@create'); // ①つぶやきの登録処理
+    Route::post('post/index','PostsController@index');  // ②投稿を表示する
 
-// delete
-Route::get('post/{id}/delete', 'PostsController@delete');
+    // update
+    Route::post('post/update', 'PostsController@update');
 
-//profile
-Route::get('/profile','UsersController@profile');
-Route::post('profile/update','UsersController@profileUpdate');
+    // delete
+    Route::get('post/{id}/delete', 'PostsController@delete');
 
-//search
-Route::post('/search','UsersController@search');
+    //profile
+    Route::get('/profile','UsersController@profile');
+    Route::post('profile/update','UsersController@profileUpdate');
 
-//follow
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+    //search
+    Route::get('/search','UsersController@search');
 
-//logout
+    //follow
+    // Route::get('/follow-list','PostsController@index');
+    // Route::get('/follower-list','PostsController@index');
+    Route::post('/users/{user}/follow', 'FollowUserController@follow');
+    Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow');
+
+    //logout
+    Route::get('/logout', 'Auth\LoginController@logout');
+});
