@@ -55,11 +55,13 @@ Route::group(['middleware' => ['auth']],function (){
     //search
     Route::get('/search','UsersController@search');
 
-    //follow
-    // Route::get('/follow-list','PostsController@index');
-    // Route::get('/follower-list','PostsController@index');
-    Route::post('/users/{user}/follow', 'FollowUserController@follow');
-    Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow');
+    //follow・unfollow
+    Route::get('follow/{id}', 'FollowsController@follow'); //フォローする（テーブルに登録する）
+    Route::get('unfollow/{id}', 'FollowsController@unfollow'); //フォロー解除する（テーブルから削除する）
+
+    //following・followed　list
+    Route::get('/followList','FollowsController@followList');
+    Route::get('/follower-list','PostsController@index');
 
     //logout
     Route::get('/logout', 'Auth\LoginController@logout');

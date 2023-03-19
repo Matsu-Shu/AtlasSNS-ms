@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Follow extends Model
 {
     //
+    protected $fillable = ['following_id', 'followed_id'];
 
-}
+    protected $table = 'follows';
 
-class FollowUser extends Pivot
-{
-    protected $fillable = ['following_user_id', 'followed_user_id'];
-
-    protected $table = 'follow_users';
-
+    //post リレーション
+    public function post()
+    {
+       return $this->belongsTo(Post::class);
+    }
 }

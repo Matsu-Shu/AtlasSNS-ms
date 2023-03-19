@@ -1,11 +1,11 @@
 @extends('layouts.login')
 
 @section('content')
-<!-- new_Post -->
+<!-- 新規投稿 -->
 <img src="{{ asset('storage/images/'. Auth::user()->images) }}">
 <!-- urlが 'user/profile' となっているところにフォームの値を送る -->
  {!! Form::open(['url' => 'post/create']) !!}
-        <!-- error message -->
+        <!-- エラーメッセージ -->
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -16,12 +16,12 @@
                 </div>
             @endif
         <div class="form-post">
-            {!! Form::input('text', 'newPost', null, ['class' => 'form-control', 'placeholder' => '投稿内容入力してください']) !!}
+            {!! Form::input('text', 'newPost', null, ['class' => 'form-control', 'placeholder' => '投稿内容を入力してください']) !!}
         </div>
         <input type="image" class="send_img" src="images/post.png">
  {!! Form::close() !!}
 
-<!-- Post -->
+<!-- 投稿 -->
 <table>
     @foreach ($post as $post)
         <tr>
@@ -32,7 +32,8 @@
         </tr>
     @endforeach
 </table>
-<!-- modal content -->
+
+<!-- 投稿編集モーダル -->
     <div class="modal js-modal">
         <div class="modal__bg"></div>
         <div class="modal__content">

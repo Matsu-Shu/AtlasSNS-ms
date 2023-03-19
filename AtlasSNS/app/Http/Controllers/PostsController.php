@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 // バリデーション設定
-use App\Http\Requests\Post;
+// use App\Http\Requests\Post;
 use Illuminate\Http\Request;
 // AtlasSNSフォルダ内にあるAuth処理のphpを使う
 use Auth;
 
 class PostsController extends Controller
 {
+    //投稿表示
     public function index(){
         $user = Auth::user();   // ログインしているユーザー情報のすべてを取得する
         $post = \DB::table('posts')->get(); // postテーブルにある情報を取得し、$postとする
@@ -16,8 +17,8 @@ class PostsController extends Controller
         return view('posts.index',['post' => $post]);
     }
 
-    // New Post
-    public function create(Post $request)
+    // 新規投稿
+    public function create(Request $request)
     {
         $post = $request->input('newPost'); // 新規投稿(newPost)を取得し、$postとする
         $user_id = Auth::id(); // ログインしているユーザーのIDを取得し、$user_idとする
@@ -30,7 +31,7 @@ class PostsController extends Controller
         return redirect('top');
     }
 
-    // update
+    // 投稿の更新
     public function update(Request $request)
     {
         $id = $request->input('id'); //投稿のidを取得し、$idとする
@@ -44,7 +45,7 @@ class PostsController extends Controller
         return redirect('top');
     }
 
-     // delete
+     // 投稿の削除
     public function delete($id)
     {
         \DB::table('posts')

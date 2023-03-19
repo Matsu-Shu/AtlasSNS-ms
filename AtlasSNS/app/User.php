@@ -27,7 +27,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //フォローされているユーザIDから、フォローしているユーザIDにアクセスする
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, "follows", "followed_id", "following_id");
+    }
 
+    //フォローしているユーザIDから、フォローされているユーザIDにアクセスする
+    public function follows()
+    {
+        return $this->belongsToMany(self::class, "follows", "following_id", "followed_id");
+    }
 
 
 }

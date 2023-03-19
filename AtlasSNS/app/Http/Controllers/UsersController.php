@@ -45,7 +45,7 @@ class UsersController extends Controller
                 'mail' => $user->mail,
                 'password' => bcrypt($user->password),
                 'bio' => $user->bio,
-                'images' => $icon, //getClientOriginalName()メソッドで取得したファイル名を保存
+                'images' => $icon,
             ]);
 
              return redirect('top');
@@ -78,24 +78,6 @@ class UsersController extends Controller
 
         return view('users.search',['users'=>$users],compact('users', 'keyword'));
         //compact関数でusersとkeywordの配列化
-    }
-
-    //follow
-    public function follow(User $user) {
-        $follow = FollowUser::create([
-            'following_user_id' => \Auth::user()->id,
-            'followed_user_id' => $user->id,
-        ]);
-        $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
-        return response()->json(['followCount' => $followCount]);
-    }
-
-    public function unfollow(User $user) {
-        $follow = FollowUser::where('following_user_id', \Auth::user()->id)->where('followed_user_id', $user->id)->first();
-        $follow->delete();
-        $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
-
-        return response()->json(['followCount' => $followCount]);
     }
 
 }
