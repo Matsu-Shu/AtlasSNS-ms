@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserUpdate;
 // AtlasSNSフォルダ内にあるAuth処理のphpを使う
 use Auth;
+use App\User;
+use App\Post;
+use App\Follow;
 
 class UsersController extends Controller
 {
@@ -79,5 +82,50 @@ class UsersController extends Controller
         return view('users.search',['users'=>$users],compact('users', 'keyword'));
         //compact関数でusersとkeywordの配列化
     }
+
+    //userProfile
+    public function userProfile($id){
+        //受け取った$id（ユーザのid）を$user_idとする
+        $user_id=$id;
+
+        //ユーザー情報の取得
+        $profile=\DB::table('users') ->where('id',$user_id) ->get();
+
+        //投稿情報の取得（1対多：1ユーザー&多投稿）
+        $postlist=\DB::table('posts') ->where('user_id',$user_id) ->get();
+
+        //他ユーザープロフページの表示と変数の受け渡し
+        return view ('users.userProfile' , compact('profile','postlist'));
+
+    }
+
+    //follow　followテーブルに[following=ログインユーザー][followed=選択したユーザー]を保存する
+    public function follow($id)
+    {
+        // ログインしているユーザーのIDを取得し、$following_idとする
+        $following_id = Auth::id();
+        //ユーザーのidを取得し、$followed_idとする
+        $followed_id = $id;
+
+        // followsテーブルに登録する
+        Follow::create([
+            'following_id' => $following_id,
+            'followed_id' => $followed_id,
+        ]);
+
+        return back();
+
+    }
+
+    //unfollow followテーブルからカラムを削除する
+    public function unfollow($id)
+    {
+        \DB::table('follows')
+            ->where('followed_id', $id)
+            ->delete();
+
+        return back();//プロフィールページリロード
+    }
+
 
 }

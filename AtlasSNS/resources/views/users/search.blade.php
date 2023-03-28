@@ -19,11 +19,12 @@
    <tr>
       <td><img src="{{ asset('storage/images/'. $users->images) }}"></td>
       <td>{{ $users->username }}</td>
-      <!-- @if() -->
-      <td><a class="" href="follow/{{$users->id}}">フォローする</a></td>
-      <!-- @else -->
+      <!-- もしログインユーザーがフォローしているユーザーIDがFollowsテーブルのfollowed_idに存在しているなら「フォロー解除」-->
+      @if(auth()->user()->isFollowing($users->id)->exists())
       <td><a class="" href="unfollow/{{$users->id}}">フォロー解除</a></td>
-      <!-- @endif -->
+      @else
+      <td><a class="" href="follow/{{$users->id}}">フォローする</a></td>
+      @endif
    </tr>
    @endforeach
 </table>

@@ -23,8 +23,9 @@
 
 <!-- 投稿 -->
 <table>
-    @foreach ($post as $post)
+    @foreach ($timelines as $post)
         <tr>
+            <!-- 投稿に紐づくユーザーのアイコンと名前を取得する -->
             <td>{{ $post->post }}</td>
             <td>{{ $post->created_at }}</td>
             <td><a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><input type="image" class="edit_img" src="images/edit.png"></a></td>

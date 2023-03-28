@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 // バリデーション設定
 use App\Http\Requests\SignUp;
 
-class RegisterContoroller extends Controller{
+class RegisterController extends Controller{
     // public function test(Request $request){
     //     $rules = [
     //     // バリデーションルール定義

@@ -11,9 +11,4 @@ class Follow extends Model
 
     protected $table = 'follows';
 
-    //post リレーション
-    public function post()
-    {
-       return $this->belongsTo(Post::class);
-    }
 }

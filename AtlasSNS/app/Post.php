@@ -11,10 +11,11 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    // リレーションシップ
+    // user リレーションシップ userテーブルの情報をいただく
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 
 }

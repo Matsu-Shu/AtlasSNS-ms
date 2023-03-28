@@ -60,12 +60,13 @@
                 <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <!-- ログイン情報 -> Userモデルのfollowsメソッド -> 情報を取得 -> 情報の数を数える -->
+                <p>{{ Auth::user()->follows()->get()->count() }}名</p>
                 </div>
                 <p><a href="/followList" class="btn btn_hover ">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->followers()->get()->count() }}名</p>
                 </div>
                 <p><a href="/followerList" class="btn btn_hover ">フォロワーリスト</a></p>
             </div>
