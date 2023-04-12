@@ -1,20 +1,11 @@
 // AC Menu
 $(function () {
-  //クリックで動く
-  $('.nav-open').click(function () {
-    $(this).toggleClass('active');
-    $(this).next('nav').slideToggle();
-  });
-});
-
-//2
-$(function () {
-  // タイトルをクリックすると
-  $(".js-accordion-title").on("click", function () {
-    // クリックした次の要素を開閉
-    $(this).next().slideToggle(300);
-    // タイトルにopenクラスを付け外しして矢印の向きを変更
-    $(this).toggleClass("open", 300);
+  $('.js_btn').each(function () {
+    $(this).on('click', function () {
+      $("+.menu", this).slideToggle();
+      $(this).toggleClass("open", 300);
+      return false;
+    });
   });
 });
 

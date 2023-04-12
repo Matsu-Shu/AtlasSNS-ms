@@ -1,10 +1,209 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     height: 100%;
-    background: #186AC9;
+    background: linear-gradient(#0066ff, yellow);
+}
+
+/*　共通  */
+.font {
+    font-weight: lighter;
+}
+
+p {
+    color: white;
+}
+
+a {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+}
+
+label {
+    color: white;
+    display: block;
+    position: relative;
+    left: 15px;
+    text-transform: lowercase;
+    font-weight: lighter;
+    padding: 8px;
+    width: 120px;
+    font-size: 12px;
+}
+
+input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    outline: none;
+}
+
+form {
+    background: rgba(51,
+            51,
+            51,
+            0.4);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+.btn {
+    background: red;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+    position: relative;
+    left: 64px;
+    top: 8px;
+    width: 90px;
+    height: 30px;
+    border: none;
+}
+
+/* Atlasロゴ */
+.logout_header {
+    margin-top: 110px;
+    text-align: center;
+}
+
+img {
+    width: 8%;
+}
+
+.logout_title {
+    font-size: 170%;
+    color: white;
+}
+
+/* フォーム範囲 */
+.login {
+    width: 260px;
+    height: 310px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.register {
+    width: 260px;
+    height: 450px;
+    margin-top: 10px;
+    margin-bottom: 60px;
+}
+
+
+/* ログイン */
+.login_item {
+    width: 260px;
+    height: 180px;
+    margin: auto;
+    position: relative;
+    top: 50px;
+}
+
+.welcome {
+    position: relative;
+    top: 30px;
+    font-weight: 110;
+    text-align: center;
+    font-size: 16px;
+}
+
+.new_user {
+    font-weight: 110;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
+    top: 70px;
+}
+
+/* 新規登録 */
+h2 {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    border: none;
+}
+
+.login_back {
+    font-weight: 110;
+    text-align: center;
+    font-size: 18px;
+    position: relative;
+    top: 40px;
+}
+
+.register_item {
+    width: 260px;
+    height: 180px;
+    margin: auto;
+    position: relative;
+    top: 40px;
+}
+
+/* ログイン完了 */
+#clear {
+    background: rgba(51,
+            51,
+            51,
+            0.4);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    flex-direction: column;
+    width: 260px;
+    height: 220px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.added {
+    text-align: center;
+}
+
+.greeting {
+    position: relative;
+    top: 40px;
+}
+
+.text {
+    position: relative;
+    top: 80px;
+}
+
+.start {
+    font-weight: 110;
+    text-align: center;
+    font-size: 24px;
+    position: relative;
+    top: 100px;
+    margin-left: 12px;
+}
+
+/* エラーメッセージ */
+.alert {
+    border: 1px solid crimson;
+    background-color: #fff8dc;
+    width: 500px;
+    height: auto;
+    position: absolute;
+    left: 35%;
+    text-align: center;
+}
+
+.error_msg {
+    color: crimson;
+    padding: 5px;
 }

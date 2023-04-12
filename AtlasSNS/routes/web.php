@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('profile/update','UsersController@profileUpdate');
 
     //userProfile
-    Route::get('profile/{id}', 'UsersController@userProfile');
+    Route::get('/profile/{id}', 'UsersController@userProfile');
     Route::get('profile/follow/{id}', 'UsersController@follow'); //フォローする（テーブルに登録する）
     Route::get('profile/unfollow/{id}', 'UsersController@unfollow'); //フォロー解除する（テーブルから削除する）
 

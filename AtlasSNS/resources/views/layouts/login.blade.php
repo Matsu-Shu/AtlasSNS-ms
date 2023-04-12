@@ -26,51 +26,49 @@
     <script src="js/script.js"></script>
     <!-- content -->
     <header>
-        <!-- <div id = "header_block"> -->
-            <!-- 1:ヘッダーロゴ -->
-            <div class="header_logo">
+        <div id = "header_block">
+            <!-- ヘッダーロゴ -->
+            <div class="header_logo header_item">
                 <!-- <h1> -->
-                    <a href="/top"><img src="images/atlas.png"></a>
+                    <a href="/top"><img src="{{ asset('images\atlas.png')}}"></a>
                 <!-- </h1> -->
             </div>
-            <!-- 2:ヘッダーユーザーネーム -->
-            <div class="header_user"><p>{{ Auth::user()->username }}さん</p></div>
-            <!-- 3:アコーディオンメニュー -->
-            <div class="ac_menu">
-            <p class="nav-open"></p>
-            <nav>
-                <ul>
-                    <li><a href="/top">HOME</a></li>
-                    <li><a href="/profile">プロフィール編集</a></li>
-                    <li><a href="/logout" method="get">ログアウト</a></li>
-                </ul>
-            </nav>
+            <!-- アコーディオンメニュー -->
+            <div class="accordion_menu">
+                    <!-- クリックイベントを設定するボタン -->
+                    <p class="js_btn">{{ Auth::user()->username }}さん</p>
+                    <!-- 開閉する要素 -->
+                    <ul class="menu">
+                        <li class="menu_item"><a href="/top" class="menu_link">HOME</a></li>
+                        <li class="menu_item"><a href="/profile" class="menu_link">プロフィール編集</a></li>
+                        <li class="menu_item"><a href="/logout" method="get" class="menu_link">ログアウト</a></li>
+                    </ul>
             </div>
-            <!-- 4:ヘッダーアイコン -->
-            <div class=""><img src="{{ asset('storage/images/'. Auth::user()->images) }}"></div>
-
-        <!-- </div> -->
+            <!-- ヘッダーアイコン -->
+            <div class="header_item"><img src="{{ asset('storage/images/'. Auth::user()->images) }}" class="icon"></div>
+        </div>
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ Auth::user()->username }}さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <!-- ログイン情報 -> Userモデルのfollowsメソッド -> 情報を取得 -> 情報の数を数える -->
-                <p>{{ Auth::user()->follows()->get()->count() }}名</p>
+                <p class="side_username side-font">{{ Auth::user()->username }}さんの</p>
+                <div class="count">
+                    <p class="side-font">フォロー数</p>
+                    <!-- ログイン情報 -> Userモデルのfollowsメソッド -> 情報を取得 -> 情報の数を数える -->
+                    <p class="side-font side-count">{{ Auth::user()->follows()->get()->count() }}人</p>
                 </div>
-                <p><a href="/followList" class="btn btn_hover ">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>{{ Auth::user()->followers()->get()->count() }}名</p>
+                <a href="/followList" class="btn btn_hover btn_list">フォローリスト</a>
+                <div class="count ">
+                    <p class="side-font">フォロワー数</p>
+                    <p class="side-font side-count">{{ Auth::user()->followers()->get()->count() }}人</p>
                 </div>
-                <p><a href="/followerList" class="btn btn_hover ">フォロワーリスト</a></p>
+                <a href="/followerList" class="btn btn_hover btn_list">フォロワーリスト</a>
             </div>
-            <p ><a href="/search" class="btn btn_hover ">ユーザー検索</a></p>
+            <p><a href="/search" class="btn btn_hover btn_search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

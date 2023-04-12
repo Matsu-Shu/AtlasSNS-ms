@@ -2,9 +2,9 @@
 
 @section('content')
 <!-- 検索フォーム -->
-<form action="/search" method="geet">
+<form action="/search" method="geet" class="search_form">
    <!-- 任意の<input>要素＝入力欄などを用意する -->
-   <input type="text" name="keyword" placeholder="ユーザー名">
+   <input type="text" name="keyword" class="keyword" placeholder="ユーザー名">
    <!-- 送信ボタンを用意する -->
    <input type="image" class="search_img" src="images/search_my.png">
 </form>
@@ -14,19 +14,17 @@
 
 <!-- ユーザーリスト -->
 <!-- キーワードに値がない場合は、userテーブルから名前とアイコンを取得し表示する、ある場合は、キーワードの結果を表示する、 -->
-<table>
    @foreach ($users as $users)
-   <tr>
-      <td><img src="{{ asset('storage/images/'. $users->images) }}"></td>
-      <td>{{ $users->username }}</td>
+   <div>
+      <p class="search_icon"><img src="{{ asset('storage/images/'. $users->images) }}"></p>
+      <p class="search_name">{{ $users->username }}</p>
       <!-- もしログインユーザーがフォローしているユーザーIDがFollowsテーブルのfollowed_idに存在しているなら「フォロー解除」-->
       @if(auth()->user()->isFollowing($users->id)->exists())
-      <td><a class="" href="unfollow/{{$users->id}}">フォロー解除</a></td>
+      <p><a class="btn_unfollow chart_btn" href="unfollow/{{$users->id}}">フォロー解除</a></p>
       @else
-      <td><a class="" href="follow/{{$users->id}}">フォローする</a></td>
+      <p><a class="btn_follow chart_btn" href="follow/{{$users->id}}">フォローする</a></p>
       @endif
-   </tr>
+   </div>
    @endforeach
-</table>
 
 @endsection

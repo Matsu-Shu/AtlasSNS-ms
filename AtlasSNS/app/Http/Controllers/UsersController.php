@@ -91,11 +91,12 @@ class UsersController extends Controller
         //ユーザー情報の取得
         $profile=\DB::table('users') ->where('id',$user_id) ->get();
 
-        //投稿情報の取得（1対多：1ユーザー&多投稿）
-        $postlist=\DB::table('posts') ->where('user_id',$user_id) ->get();
+        //投稿情報の取得
+        $postlist = Post::with('user')->where('user_id', $user_id)->latest()->get();
 
         //他ユーザープロフページの表示と変数の受け渡し
-        return view ('users.userProfile' , compact('profile','postlist'));
+        return view('users.userProfile',compact('profile','postlist'));
+        // return redirect()->route('users.userProfile')->with(compact('profile','postlist'));
 
     }
 

@@ -45,15 +45,17 @@ class User extends Authenticatable
         return $this->follows()->where('followed_id', $id);
     }
 
-    //他ユーザーの投稿にアクセスする
+    //投稿情報から、ユーザー情報にアクセスする
     public function post()
     {
-        return $this->belongsToMany(self::class, "posts", "id", "user_id");
+        return $this->belongsTo(Post::class);
     }
 
-    //ユーザーの投稿情報を取得する
-    public function userPost($id)
-    {
-        return $this->posts()->where('user_id', $id);
-    }
+    //
+    // public function postUser()
+    // {
+    //     return $this->posts()->where('user_id', $id);
+    // }
+
+
 }

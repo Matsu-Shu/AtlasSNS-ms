@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-// バリデーション設定
-// use App\Http\Requests\Post;
 use Illuminate\Http\Request;
+// バリデーション設定
+use App\Http\Requests\NewPost;
 // AtlasSNSフォルダ内にあるAuth処理のphpを使う
 use Auth;
 use App\Post;
@@ -29,7 +29,7 @@ class PostsController extends Controller
     }
 
     // 新規投稿
-    public function create(Request $request)
+    public function create(NewPost $request)
     {
         $post = $request->input('newPost'); // 新規投稿(newPost)を取得し、$postとする
         $user_id = Auth::id(); // ログインしているユーザーのIDを取得し、$user_idとする

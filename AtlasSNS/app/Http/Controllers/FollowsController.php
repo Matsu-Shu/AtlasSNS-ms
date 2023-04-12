@@ -28,7 +28,7 @@ class FollowsController extends Controller
             'followed_id' => $followed_id,
         ]);
 
-        return redirect('/search'); //検索ページリロード
+        return back(); //検索ページリロード
 
     }
 
@@ -39,7 +39,7 @@ class FollowsController extends Controller
             ->where('followed_id', $id)
             ->delete();
 
-        return redirect('/search'); //検索ページリロード
+        return back(); //検索ページリロード
     }
 
     //フォローリスト（自分がフォロー）

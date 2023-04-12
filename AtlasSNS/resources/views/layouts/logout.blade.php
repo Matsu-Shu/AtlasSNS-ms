@@ -21,8 +21,10 @@
 </head>
 <body>
   <header>
-    <h1><img src="images/atlas.png"></h1>
-    <p>Social Network Service</p>
+    <div class="logout_header">
+      <h1 class="logout_logo"><img src="{{ asset('images\atlas.png')}}"></h1>
+      <p class="logout_title">Social Network Service</p>
+    </div>
   </header>
   <div id="container">
     @yield('content')
