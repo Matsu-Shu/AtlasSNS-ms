@@ -26,10 +26,6 @@ img {
 }
 
 /* 共通「投稿」 */
-/* 投稿 */
-/* .post {
-    border-bottom: 1px solid #c0c0c0;
-} */
 
 .login_post {
     border-bottom: 1px solid #c0c0c0;
@@ -337,12 +333,6 @@ textarea[name="newPost"] {
     border: none;
     resize: none;
 }
-
-/* input[name="newPost"]::placeholder {
-    position: absolute;
-    bottom: 75%;
-    left: 5px;
-} */
 
 /* form {} */
 
