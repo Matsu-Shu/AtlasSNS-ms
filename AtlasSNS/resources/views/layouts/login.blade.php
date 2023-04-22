@@ -19,11 +19,11 @@
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
     <!-- jQuery -->
-    <script src="js/jquery-3.6.1.min.js"></script>
+    <script src="{{asset('js/jquery-3.6.1.min.js')}}"></script>
 </head>
 <body>
     <!-- jQuery file-->
-    <script src="js/script.js"></script>
+    <script src="{{asset('js/script.js')}}"></script>
     <!-- content -->
     <header>
         <div id = "header_block">

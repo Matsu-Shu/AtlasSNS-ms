@@ -3,7 +3,7 @@ $(function () {
   $('.js_btn').each(function () {
     $(this).on('click', function () {
       $("+.menu", this).slideToggle();
-      $(this).toggleClass("open", 300);
+      $(this).toggleClass("open");
       return false;
     });
   });

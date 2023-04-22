@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
-// バリデーション設定
-// use App\Http\Requests\Login;
 
 class LoginController extends Controller
 {
@@ -41,14 +40,30 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected function validator(array $data)
+    {
+        return $validator = Validator::make($data, [
+            'mail' => ['required','exists:users,mail'],
+            'password' => ['required','exists:users,password'],
+        ]);
+
+    }
+
 
     public function login(Request $request){
         if($request->isMethod('post')){
 
             $data=$request->only('mail','password');
-            // ログインが成功したら、トップページへ
-            //↓ログイン条件は公開時には消すこと
-            if(Auth::attempt($data)){
+
+            //$register(インスタンス化)=バリデーション処理　validator呼び出し
+            $register = $this->validator($data);
+
+            if ($register->fails()){
+                return redirect()->back()
+                ->withErrors($register)
+                ->withInput();
+            }
+            else if(Auth::attempt($data)){
                 return redirect('/top');
             }
         }
