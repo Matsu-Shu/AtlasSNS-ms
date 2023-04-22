@@ -28,7 +28,7 @@
     <header>
         <div id = "header_block">
             <!-- ヘッダーロゴ -->
-            <div class="header_logo header_item">
+            <div class="header_logo">
                 <!-- <h1> -->
                     <a href="/top"><img src="{{ asset('images\atlas.png')}}"></a>
                 <!-- </h1> -->
@@ -45,7 +45,7 @@
                     </ul>
             </div>
             <!-- ヘッダーアイコン -->
-            <div class="header_item"><img src="{{ asset('storage/images/'. Auth::user()->images) }}" class="icon"></div>
+            <a class="header_item"><img src="{{ asset('storage/images/'. Auth::user()->images) }}" class="icon"></a>
         </div>
     </header>
 
@@ -61,14 +61,14 @@
                     <!-- ログイン情報 -> Userモデルのfollowsメソッド -> 情報を取得 -> 情報の数を数える -->
                     <p class="side-font side-count">{{ Auth::user()->follows()->get()->count() }}人</p>
                 </div>
-                <a href="/followList" class="btn btn_hover btn_list">フォローリスト</a>
-                <div class="count ">
+                <p class=" btn_list"><a href="/followList" class="btn">フォローリスト</a></p>
+                <div class="count">
                     <p class="side-font">フォロワー数</p>
                     <p class="side-font side-count">{{ Auth::user()->followers()->get()->count() }}人</p>
                 </div>
-                <a href="/followerList" class="btn btn_hover btn_list">フォロワーリスト</a>
+                <p class=" btn_list"><a href="/followerList" class="btn">フォロワーリスト</a></p>
             </div>
-            <p><a href="/search" class="btn btn_hover btn_search">ユーザー検索</a></p>
+            <p class=" btn_hover btn_search"><a href="/search" class=" btn">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

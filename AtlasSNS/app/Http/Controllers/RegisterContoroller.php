@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // バリデーション設定
-use App\Http\Requests\SignUp;
+// use App\Http\Requests\SignUp;
 
 class RegisterController extends Controller{
     // public function test(Request $request){
@@ -15,7 +15,6 @@ class RegisterController extends Controller{
     //     // バリデーションに引っかかった場合の処理
     //     }
     // }
-    public function register(SignUp $request){
-
-    }
+    // public function register(SignUp $request){
+    // }
 }

@@ -1,20 +1,10 @@
 @extends('layouts.logout')
 
 @section('content')
-<!-- エラーメッセージ -->
-  @if ($errors->any())
-    <div class="alert alert-danger">
-      <ul>
-         @foreach ($errors->all() as $error)
-           <li class="error_msg">{{ $error }}</li>
-         @endforeach
-      </ul>
-    </div>
-  @endif
-<!-- urlが ‘post/create’ となっているところにフォームの値を送る -->
 <div>
+<!-- urlが ‘post/create’ となっているところにフォームの値を送る -->
 {!! Form::open(['class' => 'login']) !!}
-    <p class="welcome font">AtlasSNSへようこそ</p>
+    <p class="sub_title font">AtlasSNSへようこそ</p>
 
     <div class="login_item">
       {{ Form::label('mail adress') }}
@@ -27,7 +17,18 @@
 
     <p class="new_user font"><a href="/register">新規ユーザーの方はこちら</a></p>
 
-    {!! Form::close() !!}
+{!! Form::close() !!}
+
+<!-- エラーメッセージ -->
+@if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+          <li class="error_msg">{{ $error }}</li>
+        @endforeach
+    </ul>
   </div>
+@endif
+</div>
 
 @endsection

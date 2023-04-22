@@ -5,8 +5,10 @@
 <!-- ログイン -->
 {!! Form::open(['url' => '/register' ,'class' => 'register']) !!}
 
-<h2>新規ユーザー登録</h2>
+
 <div class="register_item">
+<p class="sub_title font">新規ユーザー登録</p>
+
 {{ Form::label('user name') }}
 {{ Form::text('username',null,['class' => 'input']) }}
 
